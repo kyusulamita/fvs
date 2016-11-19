@@ -3,8 +3,9 @@
 
 const expect = require('chai').expect;
 const listModule = require('../list');
+const util = require('../util')
 
-const listUtil = listModule.util;
+const getSha1 = util.getSha1;
 const ListNode = listModule.ListNode;
 
 function markImmutableDataStructure(listNode) {
@@ -72,15 +73,15 @@ describe('Functional Lists', function () {
 
     it('assigns a id property based on the inputted value', function () {
       // a ListNode's id property should equal the SHA1(value)
-      expect(ln1.id).to.equal(listUtil.getSha1(value1));
+      expect(ln1.id).to.equal(getSha1(value1));
       expect(ln1.id).to.not.be.equal(undefined);
     });  
   });
 
   describe('toString', function() {
      it('returns a space-delimited list of ids surrounded by square brackets: [id1 id2]', function () {
-       const ln1_sha = listUtil.getSha1(value1);
-       const ln2_sha = listUtil.getSha1(value2);
+       const ln1_sha = getSha1(value1);
+       const ln2_sha = getSha1(value2);
 
        expect(ln1.toString()).to.equal('[' + ln1_sha + ']');
        expect(ln2.toString()).to.equal('[' + ln2_sha + ' ' + ln1_sha + ']');
@@ -145,7 +146,7 @@ describe('Functional Lists', function () {
 
   describe('splitAt', function() {
     it('returns a copy of the list if the id does not exist', function () {
-      // e.g. (a b c d e).splitAt(c) => (a' b')
+      // e.g. (a b c d e).splitAt(c) => (a' b' c' d' e')
 
       expect(ln4.splitAt('fake id').length()).to.equal(4);
       expect(ln4.splitAt('fake id')).to.not.equal(ln4);
@@ -185,9 +186,7 @@ describe('Functional Lists', function () {
       // In a performant implementation, we would return a reference the original list, 
       // but this will be easier to implement
 
-      // this example takes
-      // (4 3 2 1).insertAt(2, (3 2 1)) => (4' 3' 3' 2' 1' 2 1)
-      expect(ln4.insertAt('fake id', ln3).length()).to.equal(3);
+      expect(ln4.insertAt('fake id', ln3).length()).to.equal(4);
       expect(ln2.insertAt('fake id', ln3)).to.not.equal(ln2)
     });
 
