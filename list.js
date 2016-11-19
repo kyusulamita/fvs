@@ -1,7 +1,8 @@
 'use strict';
 
 // Destructured assignment! Whoa! This "extracts" getSha1 from the util's exports object!
-const { getSha1 } = require('./util'); 
+// It's equivalent to saying: const getSha1 = require('./util').getSha1;
+const { getSha1 } = require('./util');
 
 function ListNode (value, next) {}
 /* want to use ES6? Try writing this as a class:
@@ -12,6 +13,6 @@ class ListNode {
 */
 
 
-module.exports = { ListNode }; 
+module.exports = { ListNode };
 // Yow! Even more destructured assignment
 // This is the same as: module.exports = { ListNode: ListNode };
