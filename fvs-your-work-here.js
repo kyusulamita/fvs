@@ -112,7 +112,7 @@ module.exports.init = function () {
   // step 1. if a .fvs file already exists, we should short circuit
 
   // step 2. do you remember the files/directories we need to make?
-  // make you pass an empty string as the contents for any initially empty files,
+  // make sure you pass an empty string as the contents for any initially empty files,
   // otherwise those files will have an initial content of 'undefined'
   
   /**
