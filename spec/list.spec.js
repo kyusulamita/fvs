@@ -1,10 +1,8 @@
 'use strict';
 
 const expect = require('chai').expect;
-const listModule = require('../list');
-
-const listUtil = listModule.util;
-const ListNode = listModule.ListNode;
+const { ListNode } = require('../list');
+const { getSha1 } = require('../util');
 
 xdescribe('Functional Lists', function () {
 
@@ -40,13 +38,13 @@ xdescribe('Functional Lists', function () {
 
   it('has a constructor function that sets an id based on the value', function () {
     // a ListNode's id property should equal the SHA1(value)
-    expect(ln1.id).to.equal(listUtil.getSha1(value1));
+    expect(ln1.id).to.equal(getSha1(value1));
     expect(ln1.id).to.not.be.equal(undefined);
   });
 
   it('has a toString method that outputs a space-delimited list of ids surrounded by square brackets: [id1 id2]', function () {
-    let ln1_sha = listUtil.getSha1(value1);
-    let ln2_sha = listUtil.getSha1(value2);
+    let ln1_sha = getSha1(value1);
+    let ln2_sha = getSha1(value2);
 
     expect(ln1.toString()).to.equal('[' + ln1_sha + ']');
     expect(ln2.toString()).to.equal('[' + ln2_sha + ' ' + ln1_sha + ']');
