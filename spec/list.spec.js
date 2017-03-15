@@ -123,7 +123,7 @@ describe('Functional Lists', function () {
     it('returns a copy of the list if the id does not exist', function () {
       // In a performant implementation, we would return a reference the original list,
       // but this will be easier to implement
-      // e.g. (a b c d e).splitAt(c) => (a' b')
+      // e.g. (a b c d).remove(e) => (a' b' c' d')
 
       expect(ln4.remove('fake id').length()).to.equal(4);
       expect(ln4.remove('fake id')).to.not.equal(ln4);
@@ -133,6 +133,7 @@ describe('Functional Lists', function () {
     it('returns a new ListNode without the node with the id', function () {
       // you may assume that ids are unique (so you'll only ever remove at most one node)
       // be careful to not change the original linked list though!
+      // e.g. (a b c d).remove(b) => (a' c d)
 
       expect(ln4.remove(ln3.id).length()).to.equal(3);
       expect(ln4.remove(ln3.id).next).to.equal(ln2);
