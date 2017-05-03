@@ -96,7 +96,8 @@ xdescribe('Functional programming', () => {
       };
 
       const accumulateSentence = function (accumulator, nextItem) {
-        return accumulator + ' ' + nextItem;
+        // note: the ternary is to ensure that we don't add a space before the first word in the sentence
+        return accumulator.length === 0 ? nextItem : accumulator + ' ' + nextItem;
       };
 
       it('returns the same data type as the accumulator', () => {
@@ -122,7 +123,7 @@ xdescribe('Functional programming', () => {
         const numberResult = reduce(accumulateSum, 0, []);
         expect(numberResult).to.be.equal(0);
 
-        const stringResult = reduce(accumulateSentence, '', words);
+        const stringResult = reduce(accumulateSentence, '', []);
         expect(stringResult).to.be.equal('');
       });
 
@@ -422,7 +423,7 @@ xdescribe('Functional programming', () => {
         expect(mapSpy.called).to.be.equal(true);
         expect(squareSpy.called).to.be.equal(true);
 
-        expect(mapSpy.calledWith(square)).to.be.equal(true);
+        expect(mapSpy.calledWith(squareSpy)).to.be.equal(true);
         expect(squareSpy.calledWith(randomNumber)).to.be.equal(true);
       });
 
@@ -455,6 +456,8 @@ xdescribe('Functional programming', () => {
         const maybe = Maybe.of(addTen);
         const otherMaybe = Maybe.of(5);
         const mapSpy = spy(otherMaybe, 'map');
+
+        maybe.ap(otherMaybe);
 
         expect(mapSpy.called).to.be.equal(true);
         expect(mapSpy.calledWith(maybe.__value));
