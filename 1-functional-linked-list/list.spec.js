@@ -1,4 +1,3 @@
-
 'use strict';
 
 const { expect } = require('chai');
@@ -23,7 +22,7 @@ function markImmutableDataStructure (listNode) {
 
 function hasImmutableChanged (listNode) {
   if (listNode === null) {
-    return false
+    return false;
   } else if (listNode.changed === true || listNode.changed === undefined) {
     return true;
   } else {
@@ -55,7 +54,7 @@ xdescribe('Functional Lists', function () {
 
   });
 
-  describe('ListNode constructor function', function() {
+  describe('ListNode constructor function', function () {
     it('has a constructor function that sets a value property to the inputted "value" and defaults a "next" property to null', function () {
       // store the value
       expect(ln1.value).to.equal(value1);
@@ -77,18 +76,19 @@ xdescribe('Functional Lists', function () {
     });
   });
 
-  describe('toString', function() {
-     it('returns a space-delimited list of ids surrounded by square brackets: [id1 id2]', function () {
-       const ln1_sha = getSha1(value1);
-       const ln2_sha = getSha1(value2);
+  describe('toString', function () {
 
-       expect(ln1.toString()).to.equal('[' + ln1_sha + ']');
-       expect(ln2.toString()).to.equal('[' + ln2_sha + ' ' + ln1_sha + ']');
-       expect(hasAnyImmutableChanged()).to.equal(false);
+    it('returns a space-delimited list of ids surrounded by square brackets: [id1 id2]', function () {
+      const ln1_sha = getSha1(value1);
+      const ln2_sha = getSha1(value2);
+
+      expect(ln1.toString()).to.equal('[' + ln1_sha + ']');
+      expect(ln2.toString()).to.equal('[' + ln2_sha + ' ' + ln1_sha + ']');
+      expect(hasAnyImmutableChanged()).to.equal(false);
     });
   });
 
-  describe('length', function() {
+  describe('length', function () {
     it('returns the number of nodes in the list', function () {
       expect(ln1.length()).to.equal(1);
       expect(ln4.length()).to.equal(4);
@@ -119,9 +119,9 @@ xdescribe('Functional Lists', function () {
       expect(ln4.append(ln2).next.next.next.next).to.equal(ln2);
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
-  })
+  });
 
-  describe('remove', function() {
+  describe('remove', function () {
     it('returns a copy of the list if the id does not exist', function () {
       // In a performant implementation, we would return a reference the original list,
       // but this will be easier to implement
@@ -144,7 +144,7 @@ xdescribe('Functional Lists', function () {
   });
 
 
-  describe('splitAt', function() {
+  describe('splitAt', function () {
     it('returns a copy of the list if the id does not exist', function () {
       // e.g. (a b c d e).splitAt(c) => (a' b' c' d' e')
 
@@ -162,7 +162,7 @@ xdescribe('Functional Lists', function () {
     });
   });
 
-  describe('find', function() {
+  describe('find', function () {
     it('returns null if the id does not exist', function () {
       // e.g. (a b c d e).splitAt(c) => (a' b')
       expect(ln1.find('fake id')).to.equal(null);
@@ -187,7 +187,7 @@ xdescribe('Functional Lists', function () {
       // but this will be easier to implement
 
       expect(ln4.insertAt('fake id', ln3).length()).to.equal(4);
-      expect(ln2.insertAt('fake id', ln3)).to.not.equal(ln2)
+      expect(ln2.insertAt('fake id', ln3)).to.not.equal(ln2);
     });
 
     it('returns a new list with the inputted list added immediately before the inputted id', function () {
@@ -202,7 +202,7 @@ xdescribe('Functional Lists', function () {
     });
   });
 
-  describe('intersection', function() {
+  describe('intersection', function () {
     it('return null if the two lists do not have an intersecting node', function () {
       expect(ln4.intersection(new ListNode('new node'))).to.equal(null);
       expect(hasAnyImmutableChanged()).to.equal(false);
