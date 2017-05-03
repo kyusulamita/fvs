@@ -31,7 +31,7 @@ function hasImmutableChanged (listNode) {
   }
 }
 
-describe('Functional Lists', function () {
+xdescribe('Functional Lists', function () {
 
   let value1, value2, value3, value4, ln1, ln2, ln3, ln4;
 

@@ -11,7 +11,7 @@ const rmdir      = require('rimraf').sync;
 const fvs        = require('./fvs');
 const getSha1    = require('../getSha1');
 
-describe('FVS', function () {
+xdescribe('FVS', function () {
 
   beforeEach(function () { rmdir('./.fvs'); });
   afterEach(function () { rmdir('./.fvs'); });

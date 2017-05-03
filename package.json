@@ -12,10 +12,12 @@
   "license": "ISC",
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "sinon": "^2.2.0"
   },
   "dependencies": {
     "commander": "^2.9.0",
+    "ramda": "^0.23.0",
     "rimraf": "^2.5.2"
   }
 }
