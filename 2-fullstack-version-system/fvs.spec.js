@@ -3,15 +3,15 @@
 // Make sure to fill this in!!!!
 const YOUR_NAME = 'FILL IN YOUR NAME HERE!!!!!';
 
-const expect = require('chai').expect;
-const cp = require('child_process');
-const fs = require('fs');
-const rmdir = require('rimraf').sync;
+const { expect } = require('chai');
+const cp         = require('child_process');
+const fs         = require('fs');
+const rmdir      = require('rimraf').sync;
 
-const fvs = require('../fvs-your-work-here');
-const getSha1 = require('../util').getSha1;
+const fvs        = require('./fvs');
+const getSha1    = require('../getSha1');
 
-xdescribe('FVS', function () {
+describe('FVS', function () {
 
   beforeEach(function () { rmdir('./.fvs'); });
   afterEach(function () { rmdir('./.fvs'); });

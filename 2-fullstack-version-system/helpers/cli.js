@@ -8,7 +8,7 @@
 *
 **/
 
-const fvs = require('./fvs-your-work-here');
+const fvs = require('../fvs');
 
 module.exports = function () {
   try {

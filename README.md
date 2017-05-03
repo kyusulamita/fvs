@@ -1,3 +1,13 @@
+# Welcome to FVS (Fullstack Version System
+#### (...suggestions for better names are always welcome)
+
+## Part 1 - Functional Linked List
+
+The specs are located in `spec/list.spec.js`.
+You will work out of `list.js`
+
+
+
 Some slides:
 
 - http://slides.com/tomkelly-1/git-internals

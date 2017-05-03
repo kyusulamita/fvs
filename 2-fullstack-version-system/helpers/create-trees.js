@@ -4,7 +4,7 @@
  * Hey! Don't look here if you want to implement creating a project tree on your own
  */
 const fs = require('fs');
-const getSha1 = require('./util').getSha1;
+const getSha1 = require('../../getSha1');
 
 function toObject (index, project) {
   project = project || {};

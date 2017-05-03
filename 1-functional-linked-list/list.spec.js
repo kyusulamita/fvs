@@ -1,25 +1,27 @@
 
 'use strict';
 
-const expect = require('chai').expect;
-const { ListNode } = require('../list');
-const { getSha1 } = require('../util');
+const { expect } = require('chai');
+const ListNode   = require('./list');
+const getSha1    = require('../getSha1');
 
-function markImmutableDataStructure(listNode) {
+function markImmutableDataStructure (listNode) {
   listNode._next = listNode.next;
   listNode.changed = false;
+
   Object.defineProperty(listNode, 'next', {
-    set: function(value) {
+
+    set (value) {
       this._next = value;
       this.changed = true;
     },
-    get: function(value) {
+    get (value) {
       return this._next;
     }
   });
 }
 
-function hasImmutableChanged(listNode) {
+function hasImmutableChanged (listNode) {
   if (listNode === null) {
     return false
   } else if (listNode.changed === true || listNode.changed === undefined) {

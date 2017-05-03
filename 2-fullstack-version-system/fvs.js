@@ -29,7 +29,7 @@
 *
 */
 const fs = require('fs');
-const getSha1 = require('./util').getSha1;
+const getSha1 = require('../getSha1');
 
 
 // Let's write some helper functions!
@@ -43,15 +43,15 @@ const getSha1 = require('./util').getSha1;
  */
 function createFVSObject (fileContents) {
   // a. Hash the contents of the file
-  
+
   // b. Use the first two characters of the hash as the directory in .fvs/objects
-  
+
   // c. Check if the directory already exists (do you know how to check if a directory exists in node)?
   //      Hint: what do you get when you fs.readdir the .fvs/objects directory...
   //    If the directory doesn't exist, you'll need to make it
-  
+
   // d. Write a file whose name is the rest of the hash, and whose contents is the contents of the file
-  
+
   // e. Return the hash!
 }
 
@@ -67,30 +67,30 @@ function createBlobObject (filePath) {
 /**
  * updateIndex will update the index file with the passed in filePath and blobHash.
  * For example, if our index looks like this:
- * 
+ *
  * 'test1.txt 2ba0f3bff73bd3f3ds212ba0f3bff73bd3f3ds21'
- * 
+ *
  * and we pass in a filePath of 'test2.txt' and 'f83b3bff73bd3f3ds212ba0f3bff73bd3f3ds21',
  * the new index we return should look something like:
- * 
+ *
  * 'test1.txt 2ba0f3bff73bd3f3ds212ba0f3bff73bd3f3ds21' + '\n' +
  * 'test2.txt f83b3bff73bd3f3ds212ba0f3bff73bd3f3ds21'
- *  
- * 
- * 
+ *
+ *
+ *
  * Watch out - If we pass in a duplicate filePath, we should replace the previous entry!
- * 
+ *
  * So if the index looks like this:
- * 
+ *
  * 'test1.txt 2ba0f3bff73bd3f3ds212ba0f3bff73bd3f3ds21'
- * 
+ *
  * and we pass in 'test1.txt' and 'f83b3bff73bd3f3ds212ba0f3bff73bd3f3ds21',
  * the new index will say:
- * 
+ *
  * 'test1.txt f83b3bff73bd3f3ds212ba0f3bff73bd3f3ds21'
- * 
- * 
- * 
+ *
+ *
+ *
  * NOTE: the index passed in here is a string representing the result of reading the index file
  * Remember that each line is delimited by a '\n', and the content of each line is space delimited
  * If the index file did not previously exist, assume that you created it and set its contents to an empty string
@@ -98,13 +98,13 @@ function createBlobObject (filePath) {
  */
 function updateIndex (index, filePath, blobHash) {
   // a. parse the index into an array (if the index is empty, it should be an empty array)
-  
+
   // b. check if the file already has an index entry, and remove it if it does!
-  
+
   // c. add the new line to the index
-  
+
   // d. parse the new index back into a string and write it to .fvs/index
-  
+
   // e. return string of the new index!
 }
 
@@ -114,7 +114,7 @@ module.exports.init = function () {
   // step 2. do you remember the files/directories we need to make?
   // make sure you pass an empty string as the contents for any initially empty files,
   // otherwise those files will have an initial content of 'undefined'
-  
+
   /**
    *  .fvs/
    *    objects/
@@ -124,11 +124,11 @@ module.exports.init = function () {
 };
 
 /**
- * 
+ *
  * At this point, create a new directory and try typing 'fvs' into you command line -
  * if you `ls -a` you should see your fvs directory, and if you `cd .fvs`, you should
  * be able to explore it!
- * 
+ *
  */
 
 module.exports.add = function () {
@@ -151,11 +151,11 @@ module.exports.add = function () {
 };
 
 /**
- * 
+ *
  * Awesome job getting this far! Try playing around by running `fvs init` in a new directory,
  * `touch <anyFileName.js>`, and try to `fvs add <anyFileName.js>!` Can you find the fvs objects
- * that got created? What does the index look like? 
- * 
+ * that got created? What does the index look like?
+ *
  */
 
 module.exports.commit = function () {
@@ -163,14 +163,14 @@ module.exports.commit = function () {
   // step 0a. make sure we have a lovely commit message!
 
   /**
-   * 
+   *
    * step 1. create a tree of the project based on the index
    * For now, I've done this for you! It's not easy!
    * If you get done early, try implementing this on your own!
-   * 
+   *
    */
   let index = fs.readFileSync('./.fvs/index', 'utf8');
-  let treeRootHash = require('./helpers')(index);
+  let treeRootHash = require('./helpers/create-trees')(index);
 
   // step 2. create a commit object
     // if it's not the first commit, remember to get current branch from HEAD, and get the parent tree from refs
@@ -198,10 +198,10 @@ module.exports.commit = function () {
 };
 
 /**
- * 
+ *
  * Awesome! You know what to do! Go ahead and start adding and commiting like a real project!
  * It will totally work!
- * 
+ *
  */
 
 /**
@@ -242,3 +242,4 @@ module.exports.handleDefault = function () {
 module.exports.createFVSObject = createFVSObject;
 module.exports.createBlobObject = createBlobObject;
 module.exports.updateIndex = updateIndex;
+

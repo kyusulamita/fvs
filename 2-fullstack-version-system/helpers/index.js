@@ -2,4 +2,4 @@
 
 'use strict';
 
-require('./fvs-cli-helper')();
+require('./cli')();
