@@ -401,6 +401,10 @@ xdescribe('Functional programming', () => {
 
     }); // end describe('Maybe.prototype.map')
 
+    // `chain` is very similar to map - it's use case is to handle callback functions that return Maybes
+    // So: if a callback function returns a regular value, you should use .map,
+    // and if a callback function returns a Maybe, you should use .chain
+    // (this makes it so that you don't end up with nested Maybes - that is, a Maybe with a __value that's also a Maybe)
     describe('Maybe.prototype.chain', () => {
 
       const randomNumber = makeRandomNumber();
@@ -414,7 +418,7 @@ xdescribe('Functional programming', () => {
         const mapSpy = spy(maybe, 'map');
 
         const square = function (x) {
-          return x * x;
+          return Maybe.of(x * x);
         };
         const squareSpy = spy(square);
 
@@ -427,15 +431,18 @@ xdescribe('Functional programming', () => {
         expect(squareSpy.calledWith(randomNumber)).to.be.equal(true);
       });
 
-      it('returns the unwrapped value from the Maybe after mapping it', () => {
-        const maybe = Maybe.of(randomNumber);
-        const unwrappedValue = maybe.chain(n => n * n);
+      it('returns the unwrapped value from the Maybe after mapping it (which will be another maybe)', () => {
+        const m1 = Maybe.of(randomNumber);
+        const m2 = m1.chain(n => Maybe.of(n * n));
 
-        expect(unwrappedValue).to.be.equal(randomNumber * randomNumber);
+        expect(m2.__value).to.be.equal(randomNumber * randomNumber);
       });
 
     }); // end describe('Maybe.prototype.chain')
 
+    // `ap` (short for `apply`) is similar to `map` and `chain`
+    // In this case, you have a Maybe whose __value is a function!
+    // `ap` allows you to "apply" that function to another Maybe
     describe('Maybe.prototype.ap', () => {
 
       const addTen = function (x) {
