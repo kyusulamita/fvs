@@ -21,14 +21,6 @@ You'll work out of `2-fullstack-version-system/fvs.js`
 The `2-fullstack-version-system/helpers` directory contains utilities to make the command line operations work,
 as well as a utility function that you'll use when you implement commit
 
-## Part 3 - Functional
-
-For this exercise, you will implement some fundamental functional programming utilities, including
-a `curry`, `compose`, and the `Maybe Monad`!
-
-The specs are located in `3-functional/functional.spec.js`
-You will work out of `3-functional/functional.js`
-
 ## Review material
 
 ### Immutable DS
@@ -39,11 +31,6 @@ https://medium.com/@dtinth/immutable-js-persistent-data-structures-and-structura
 https://www.youtube.com/watch?v=fCtZWGhQBvo
 http://gitlet.maryrosecook.com/
 https://www.jayway.com/2013/03/03/git-is-a-purely-functional-data-structure/
-
-### Functional Programming
-https://github.com/MostlyAdequate/mostly-adequate-guide
-http://jrsinclair.com/articles/2016/marvellously-mysterious-javascript-maybe-monad/
-https://github.com/fantasyland/fantasy-land
 
 Some slides:
 
