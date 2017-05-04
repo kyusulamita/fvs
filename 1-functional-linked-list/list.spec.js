@@ -3,41 +3,15 @@
 const { expect } = require('chai');
 const ListNode   = require('./list');
 const getSha1    = require('../getSha1');
-
-function markImmutableDataStructure (listNode) {
-  listNode._next = listNode.next;
-  listNode.changed = false;
-
-  Object.defineProperty(listNode, 'next', {
-
-    set (value) {
-      this._next = value;
-      this.changed = true;
-    },
-    get (value) {
-      return this._next;
-    }
-  });
-}
-
-function hasImmutableChanged (listNode) {
-  if (listNode === null) {
-    return false;
-  } else if (listNode.changed === true || listNode.changed === undefined) {
-    return true;
-  } else {
-    return hasImmutableChanged(listNode.next);
-  }
-}
+const { markImmutableDataStructure, hasImmutableChanged } = require('./helpers');
 
 xdescribe('Functional Lists', function () {
 
   let value1, value2, value3, value4, ln1, ln2, ln3, ln4;
 
-  function hasAnyImmutableChanged() {
+  function hasAnyImmutableChanged () {
     return [ln1, ln2, ln3, ln4].some(hasImmutableChanged);
   }
-
 
   beforeEach(function () {
     value1 = 'my first node';
@@ -197,7 +171,7 @@ xdescribe('Functional Lists', function () {
       // this example takes
       // (4 3 2 1).insertAt(2, (3 2 1)) => (4' 3' 3' 2' 1' 2 1)
       expect(ln4.insertAt(ln2.id, ln3).length()).to.equal(7);
-      expect(ln2.insertAt(ln1.id, ln3).next.next.next.next).to.equal(ln1)
+      expect(ln2.insertAt(ln1.id, ln3).next.next.next.next).to.equal(ln1);
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
   });
