@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
-    "ramda": "^0.23.0",
     "rimraf": "^2.5.2"
   }
 }
