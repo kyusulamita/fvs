@@ -8,7 +8,7 @@ For this exercise, you will be implementing an immutable linked list!
 The specs are located in `1-functional-linked-list/list.spec.js`.
 You will work out of `1-functional-linked-list/list.js`
 
-There's no need to do anything like install `Immutable` - we can do this from scratch!
+The `1-functional-linked-list/helpers` directory contains a few utility functions used by the test specs - do not edit these.
 
 ## Part 2 - Fullstack Version System
 

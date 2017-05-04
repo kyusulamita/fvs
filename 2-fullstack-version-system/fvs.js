@@ -5,8 +5,8 @@
 * The steps are below - but go ahead and take some time to try figuring it out on your own!
 *
 *
-* 1. Add the following to your package.json: "bin" : { "fvs" : "./fvs.js" }
-* 2. At the top of fvs.js, add #!/usr/bin/env node (this is done for you)
+* 1. Add the following to your package.json: "bin" : { "fvs" : "./2-fullstack-version-system/helpers/index.js" }
+* 2. At the top of 2-fullstack-version-system/helpers/index.js, add #!/usr/bin/env node (this is done for you)
 * 3. From your project's root: npm install -g ./
 *
 */
@@ -30,7 +30,6 @@
 */
 const fs = require('fs');
 const getSha1 = require('../getSha1');
-
 
 // Let's write some helper functions!
 
