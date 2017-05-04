@@ -152,7 +152,7 @@ xdescribe('Functional Lists', function () {
     });
   });
 
-  describe('insertAt', function() {
+  describe('insertAt', function () {
     it('returns a copy of the list if the inputted id does not exist', function () {
       // e.g. (a b c d e).insertAt(c, (f, g, h)) would return (a' b' f' g' h' c d e) as a new list
       // the original list's (c d e) should be the same as the new lists (c d e) in terms of object equality
@@ -183,7 +183,7 @@ xdescribe('Functional Lists', function () {
     });
 
     it('find and return the first shared node of the two lists', function () {
-      let ln2_branch = ln2.prepend('test node 1').prepend('Test node 2');
+      const ln2_branch = ln2.prepend('test node 1').prepend('Test node 2');
       expect(ln4.intersection(ln2_branch)).to.equal(ln2);
       expect(hasAnyImmutableChanged()).to.equal(false);
     });

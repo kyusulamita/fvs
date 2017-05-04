@@ -18,7 +18,7 @@ xdescribe('FVS', function () {
 
   it('is available as global module', function (done) {
 
-    let process = cp.spawn('fvs', ['notacommand']);
+    const process = cp.spawn('fvs', ['notacommand']);
 
     process.stdout.on('data', (d) => {
       expect(d.toString()).to.be.equal('Not a recognized command!\n');
@@ -39,7 +39,7 @@ xdescribe('FVS', function () {
       });
 
       it('returns a hash of the filecontents', function () {
-        let result = fvs.createFVSObject('test content');
+        const result = fvs.createFVSObject('test content');
         expect(result).to.be.equal(hash);
       });
 
@@ -73,7 +73,7 @@ xdescribe('FVS', function () {
       afterEach(function () { rmdir('test1.txt'); });
 
       it('returns a hash of the filecontents of the given file', function () {
-        let result = fvs.createBlobObject('test1.txt');
+        const result = fvs.createBlobObject('test1.txt');
         expect(result).to.be.equal(hash);
       });
 
@@ -85,9 +85,9 @@ xdescribe('FVS', function () {
 
     describe('updateIndex', function () {
 
-      let hash,
-          fileName,
-          index;
+      let hash;
+      let fileName;
+      let index;
 
       beforeEach(function () {
         fs.mkdirSync('.fvs');
@@ -112,7 +112,7 @@ xdescribe('FVS', function () {
 
         fs.writeFileSync('test1.txt', 'test1 edited content', 'utf8');
         hash = getSha1('test1 edited content');
-        let newIndex = fvs.updateIndex(index, fileName, hash);
+        const newIndex = fvs.updateIndex(index, fileName, hash);
 
         expect(fs.readFileSync('./.fvs/index', 'utf8')).to.be.equal(newIndex);
       });
@@ -123,10 +123,10 @@ xdescribe('FVS', function () {
 
     describe('accepts "init" as a command', function () {
 
-      let rootDir,
-          fvsDir,
-          refs,
-          headContent;
+      let rootDir;
+      let fvsDir;
+      let refs;
+      let headContent;
 
       it('creates the appropriate directories and files', function () {
         fvs.init();
@@ -152,9 +152,9 @@ xdescribe('FVS', function () {
 
     describe ('accepts "add" as a command', function () {
 
-      let blobHash,
-          blobDir,
-          blobFile;
+      let blobHash;
+      let blobDir;
+      let blobFile;
 
       beforeEach(function () {
         fs.mkdirSync('.fvs');
@@ -176,14 +176,14 @@ xdescribe('FVS', function () {
       it('creates a blob object that contains the content of test1.txt', function () {
         process.argv = ['', 'fvs', 'add', 'test1.txt'];
         fvs.add();
-        let file = fs.readFileSync('./.fvs/objects/' + blobDir + '/' + blobFile, 'utf8');
+        const file = fs.readFileSync('./.fvs/objects/' + blobDir + '/' + blobFile, 'utf8');
         expect(file).to.be.equal('test1 content');
       });
 
       it('adds an index entry that points at the blob', function () {
         process.argv = ['', 'fvs', 'add', 'test1.txt'];
         fvs.add();
-        let index = fs.readFileSync('./.fvs/index', 'utf8');
+        const index = fs.readFileSync('./.fvs/index', 'utf8');
 
         expect(index).to.be.equal('test1.txt' + ' ' + blobHash);
       });
@@ -196,7 +196,7 @@ xdescribe('FVS', function () {
 
         process.argv = ['', 'fvs', 'add', 'test1.txt'];
         fvs.add();
-        let index = fs.readFileSync('./.fvs/index', 'utf8');
+        const index = fs.readFileSync('./.fvs/index', 'utf8');
 
         expect(index).to.be.equal('test1.txt' + ' ' + blobHash);
       });
@@ -204,18 +204,18 @@ xdescribe('FVS', function () {
 
     describe ('accepts "commit" as a command', function () {
 
-      let blobHash,
-          blobDir,
-          blobFile,
-          treeContent,
-          treeHash,
-          treeDir,
-          treeFile,
-          commitContent,
-          commitHash,
-          commitDir,
-          commitFile,
-          index;
+      let blobHash;
+      let blobDir;
+      let blobFile;
+      let treeContent;
+      let treeHash;
+      let treeDir;
+      let treeFile;
+      let commitContent;
+      let commitHash;
+      let commitDir;
+      let commitFile;
+      let index;
 
       beforeEach(function () {
         fs.mkdirSync('.fvs');
@@ -258,7 +258,7 @@ xdescribe('FVS', function () {
         process.argv = ['', 'fvs', 'commit', 'testing'];
         fvs.commit();
 
-        let file = fs.readFileSync('./.fvs/objects/' + treeDir + '/' + treeFile, 'utf8');
+        const file = fs.readFileSync('./.fvs/objects/' + treeDir + '/' + treeFile, 'utf8');
         expect(file).to.be.equal(treeContent);
       });
 
@@ -266,14 +266,14 @@ xdescribe('FVS', function () {
         process.argv = ['', 'fvs', 'commit', 'testing'];
         fvs.commit();
 
-        let file = fs.readFileSync('./.fvs/objects/' + commitDir + '/' + commitFile, 'utf8');
+        const file = fs.readFileSync('./.fvs/objects/' + commitDir + '/' + commitFile, 'utf8');
         expect(file).to.be.equal(commitContent);
       });
 
       it('points the current branch at the new commit object', function () {
         process.argv = ['', 'fvs', 'commit', 'testing'];
         fvs.commit();
-        let file = fs.readFileSync('./.fvs/refs/master', 'utf8');
+        const file = fs.readFileSync('./.fvs/refs/master', 'utf8');
         expect(file).to.be.equal(commitHash);
       });
 
@@ -286,14 +286,14 @@ xdescribe('FVS', function () {
         fvs.add();
 
         process.argv = ['', 'fvs', 'commit', 'testing2'];
-        let matchString = 'parent ' + commitHash;
-        let regexp = new RegExp(matchString);
+        const matchString = 'parent ' + commitHash;
+        const regexp = new RegExp(matchString);
 
-        let hash = fvs.commit();
+        const hash = fvs.commit();
         commitDir = hash.slice(0, 2);
         commitFile = hash.slice(2);
 
-        let file = fs.readFileSync('./.fvs/objects/' + commitDir + '/' + commitFile, 'utf8');
+        const file = fs.readFileSync('./.fvs/objects/' + commitDir + '/' + commitFile, 'utf8');
         expect(regexp.test(file)).to.be.true;
       });
     });
