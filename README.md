@@ -24,13 +24,13 @@ as well as a utility function that you'll use when you implement commit
 ## Review material
 
 ### Immutable DS
-https://facebook.github.io/immutable-js/#the-case-for-immutability
-https://medium.com/@dtinth/immutable-js-persistent-data-structures-and-structural-sharing-6d163fbd73d2
+* https://facebook.github.io/immutable-js/#the-case-for-immutability
+* https://medium.com/@dtinth/immutable-js-persistent-data-structures-and-structural-sharing-6d163fbd73d2
 
 ### Git
-https://www.youtube.com/watch?v=fCtZWGhQBvo
-http://gitlet.maryrosecook.com/
-https://www.jayway.com/2013/03/03/git-is-a-purely-functional-data-structure/
+* https://www.youtube.com/watch?v=fCtZWGhQBvo
+* http://gitlet.maryrosecook.com/
+* https://www.jayway.com/2013/03/03/git-is-a-purely-functional-data-structure/
 
 Some slides:
 
