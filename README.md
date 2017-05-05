@@ -1,4 +1,4 @@
-# Welcome to FVS (Fullstack Version System
+# Welcome to FVS (Fullstack Version System)
 #### (...suggestions for better names are always welcome)
 
 ## Part 0 - Set up
