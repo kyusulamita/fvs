@@ -6,6 +6,8 @@
   "scripts": {
     "test": "mocha ./**/*.spec.js",
     "test-watch": "mocha -w ./**/*.spec.js",
+    "test-1": "mocha -w ./1-*/*.spec.js",
+    "test-2": "mocha -w ./2-*/*.spec.js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "author": "",

@@ -1,6 +1,17 @@
 # Welcome to FVS (Fullstack Version System
 #### (...suggestions for better names are always welcome)
 
+## Part 0 - Set up
+
+* `npm install` (or [`yarn install`](https://yarnpkg.com/en/))
+* Open the `.spec` of your choice and remove the `x` from `xdescribe`, so that it just says `describe`
+* `npm test` to run all test specs once.
+  * You can run the tests in watch-mode with `npm run test-watch`
+  * You can run only a specific test suite by saying:
+    * `npm run test-1` to only run `1-functional-linked-list`
+    * `npm run test-2` to only run `2-fullstack-version-system`
+    * (Note: both will run in watch mode)
+
 ## Part 1 - Functional Linked List
 
 For this exercise, you will be implementing an immutable linked list!
