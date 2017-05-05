@@ -16,8 +16,8 @@
 
 For this exercise, you will be implementing an immutable linked list!
 
-The specs are located in `1-functional-linked-list/list.spec.js`.
-You will work out of `1-functional-linked-list/list.js`
+* The specs are located in `1-functional-linked-list/list.spec.js`.
+* You will work out of `1-functional-linked-list/list.js`
 
 The `1-functional-linked-list/helpers` directory contains a few utility functions used by the test specs - do not edit these.
 
@@ -26,8 +26,8 @@ The `1-functional-linked-list/helpers` directory contains a few utility function
 For this exercise, you will implement several of the basic commands in Git.
 You'll create Git-like "objects" that can actually be used for version control.
 
-The specs are located in `2-fullstack-version-system/fvs.spec.js`
-You'll work out of `2-fullstack-version-system/fvs.js`
+* The specs are located in `2-fullstack-version-system/fvs.spec.js`
+* You'll work out of `2-fullstack-version-system/fvs.js`
 
 The `2-fullstack-version-system/helpers` directory contains utilities to make the command line operations work,
 as well as a utility function that you'll use when you implement commit
