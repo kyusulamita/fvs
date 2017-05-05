@@ -49,9 +49,9 @@ xdescribe('Functional Lists', function () {
 
   describe('toString', function () {
 
-    it('returns a space-delimited list of values surrounded by square brackets: [value1 value2]', function () {
-      expect(ln1.toString()).to.equal('[' + value1 + ']');
-      expect(ln2.toString()).to.equal('[' + value2 + ' ' + value1 + ']');
+    it('returns a space-delimited list of values: "value1 value2" ', function () {
+      expect(ln1.toString()).to.equal('' + value1); // '' + value1 -> this merely coerces value1 to be a String rather than a Number
+      expect(ln2.toString()).to.equal(value2 + ' ' + value1);
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
   });
@@ -59,8 +59,8 @@ xdescribe('Functional Lists', function () {
   describe('id', function () {
 
     it('returns the result running the output of toString into the SHA1 hashing algorithm', function () {
-      expect(ln1.id()).to.equal(getSha1('[' + value1 + ']'));
-      expect(ln2.id()).to.equal(getSha1('[' + value2 + ' ' + value1 + ']'));
+      expect(ln1.id()).to.equal(getSha1('' + value1));
+      expect(ln2.id()).to.equal(getSha1(value2 + ' ' + value1));
     });
   });
 
