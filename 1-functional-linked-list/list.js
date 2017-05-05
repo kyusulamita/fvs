@@ -1,5 +1,6 @@
 'use strict';
 
+// This will come in handy when you implement ListNode.prototype.id
 const getSha1 = require('../getSha1');
 
 function ListNode (value, next) {

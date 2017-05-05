@@ -29,6 +29,7 @@ xdescribe('Functional Lists', function () {
   });
 
   describe('ListNode constructor function', function () {
+
     it('has a constructor function that sets a value property to the inputted "value" and defaults a "next" property to null', function () {
       // store the value
       expect(ln1.value).to.equal(value1);
@@ -39,26 +40,27 @@ xdescribe('Functional Lists', function () {
     });
 
     it('takes in a listNode as its second parameter and points the first listNode to it', function () {
+
       // ln2.next should equal ln (not value, but by reference)
       expect(ln2.next).to.equal(ln1);
     });
 
-    it('assigns a id property based on the inputted value', function () {
-      // a ListNode's id property should equal the SHA1(value)
-      expect(ln1.id).to.equal(getSha1(value1));
-      expect(ln1.id).to.not.be.equal(undefined);
-    });
   });
 
   describe('toString', function () {
 
-    it('returns a space-delimited list of ids surrounded by square brackets: [id1 id2]', function () {
-      const ln1_sha = getSha1(value1);
-      const ln2_sha = getSha1(value2);
-
-      expect(ln1.toString()).to.equal('[' + ln1_sha + ']');
-      expect(ln2.toString()).to.equal('[' + ln2_sha + ' ' + ln1_sha + ']');
+    it('returns a space-delimited list of values surrounded by square brackets: [value1 value2]', function () {
+      expect(ln1.toString()).to.equal('[' + value1 + ']');
+      expect(ln2.toString()).to.equal('[' + value2 + ' ' + value1 + ']');
       expect(hasAnyImmutableChanged()).to.equal(false);
+    });
+  });
+
+  describe('id', function () {
+
+    it('returns the result running the output of toString into the SHA1 hashing algorithm', function () {
+      expect(ln1.id()).to.equal(getSha1('[' + value1 + ']'));
+      expect(ln2.id()).to.equal(getSha1('[' + value2 + ' ' + value1 + ']'));
     });
   });
 
@@ -111,8 +113,8 @@ xdescribe('Functional Lists', function () {
       // be careful to not change the original linked list though!
       // e.g. (a b c d).remove(b) => (a' c d)
 
-      expect(ln4.remove(ln3.id).length()).to.equal(3);
-      expect(ln4.remove(ln3.id).next).to.equal(ln2);
+      expect(ln4.remove(ln3.id()).length()).to.equal(3);
+      expect(ln4.remove(ln3.id()).next).to.equal(ln2);
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
   });
@@ -130,8 +132,8 @@ xdescribe('Functional Lists', function () {
     it('returns a list that only contains nodes up to the node with id', function () {
       // e.g. (a b c d e).splitAt(c) => (a' b')
 
-      expect(ln4.splitAt(ln2.id).length()).to.equal(2);
-      expect(ln4.splitAt(ln2.id).next.next).to.be.null;
+      expect(ln4.splitAt(ln2.id()).length()).to.equal(2);
+      expect(ln4.splitAt(ln2.id()).next.next).to.be.null;
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
   });
@@ -146,7 +148,7 @@ xdescribe('Functional Lists', function () {
 
     it('returns the sublist that starts with a node with id', function () {
       for (const listNode of [ln1, ln2, ln3, ln4]) {
-        expect(ln4.find(listNode.id)).to.equal(listNode);
+        expect(ln4.find(listNode.id())).to.equal(listNode);
       }
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
@@ -170,8 +172,8 @@ xdescribe('Functional Lists', function () {
 
       // this example takes
       // (4 3 2 1).insertAt(2, (3 2 1)) => (4' 3' 3' 2' 1' 2 1)
-      expect(ln4.insertAt(ln2.id, ln3).length()).to.equal(7);
-      expect(ln2.insertAt(ln1.id, ln3).next.next.next.next).to.equal(ln1);
+      expect(ln4.insertAt(ln2.id(), ln3).length()).to.equal(7);
+      expect(ln2.insertAt(ln1.id(), ln3).next.next.next.next).to.equal(ln1);
       expect(hasAnyImmutableChanged()).to.equal(false);
     });
   });
