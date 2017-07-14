@@ -25,8 +25,6 @@
 *
 * https://nodejs.org/api/fs.html
 *
-* I've also written you a getSha1 function (since you've already written one yourselves)!
-*
 */
 const fs = require('fs');
 const getSha1 = require('../getSha1');
